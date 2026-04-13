@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ant Media / Castlabs DRM WebRTC player</title>
+	<link rel="icon" href="data:,">
+	<link href="css/player.css" rel="stylesheet">
+	<script src="./js/webrtc/adapter-latest.js"></script>
+</head>
+
+<body>
+	<div class="app-shell">
+		<section id="setup_screen" class="setup-screen">
+			<div class="setup-card">
+				<h1>Ant Media / Castlabs DRM WebRTC player</h1>
+				<p id="stream_label" class="stream-label"></p>
+				<form id="start_form" class="setup-form">
+					<table class="setup-table">
+						<tr>
+							<td class="label-cell">Source</td>
+							<td class="value-cell">
+								<input id="source_input" type="text" value="http://127.0.0.1:5080/live/" spellcheck="false">
+							</td>
+						</tr>
+						<tr>
+							<td class="label-cell">Encryption</td>
+							<td class="value-cell">
+								<select id="encryption_select">
+									<option value="clear" selected>Clear</option>
+									<option value="drm">DRM</option>
+								</select>
+							</td>
+						</tr>
+						<tr class="drm-field">
+							<td class="label-cell">Environment</td>
+							<td class="value-cell">
+								<select id="environment_select">
+									<option value="staging">Staging</option>
+									<option value="production" selected>Production</option>
+								</select>
+							</td>
+						</tr>
+						<tr class="drm-field">
+							<td class="label-cell">Merchant id</td>
+							<td class="value-cell">
+								<input id="merchant_id_input" type="text" value="" spellcheck="false">
+							</td>
+						</tr>
+						<tr class="drm-field">
+							<td class="label-cell">Key id</td>
+							<td class="value-cell">
+								<input id="key_id_input" type="text" value="00000000000000000000000000000001" spellcheck="false">
+							</td>
+						</tr>
+						<tr class="drm-field">
+							<td class="label-cell">Buffer size (ms)</td>
+							<td class="value-cell">
+								<input id="buffer_input" type="number" min="0" step="50" value="500">
+							</td>
+						</tr>
+						<tr class="drm-field">
+							<td class="label-cell">HW-secure DRM</td>
+							<td class="value-cell">
+								<input id="hw_secure_input" type="checkbox" autocomplete="off">
+							</td>
+						</tr>
+						<tr class="drm-field">
+							<td class="label-cell">Output protection</td>
+							<td class="value-cell">
+								<input id="output_protection_input" type="checkbox" autocomplete="off">
+							</td>
+						</tr>
+					</table>
+					<div class="actions">
+						<button id="start_button" type="submit">Play</button>
+					</div>
+				</form>
+			</div>
+		</section>
+
+		<section id="player_screen" class="player-screen hidden">
+			<div id="video_info" class="video-info">Waiting to start playback...</div>
+			<div id="video_container" class="video-container hidden">
+				<video id="video-player" playsinline autoplay></video>
+				<audio id="remote-audio" playsinline autoplay></audio>
+			</div>
+			<div id="networkWarning" class="network-warning hidden"></div>
+		</section>
+	</div>
+
+	<script type="module" src="./js/app.js"></script>
+</body>
+</html>
