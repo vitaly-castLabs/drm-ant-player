@@ -11,6 +11,6 @@ python3 -m http.server 8000
 ```
 Note that HTTPS (self-signed certs are fine) is preferred since DRM won't function outside localhost context with HTTP. A simple performant HTTPS server with pre-generated self-signed certtificate can be found at https://github.com/vitaly-castLabs/httpsrv.
 
-Open in Chrome, Edge or Safari (the latter will only work if you already obtained and set up FairPlay certificate), select `DRM` encryption, set your DRMtoday `Merchant id`, and `Key id` if necessary, and press `Play`:
+Open in Chrome, Edge or Safari (the latter will only work if you already obtained and set up FairPlay certificate), select `DRM` encryption, set your DRMtoday `Merchant id`, `Key id`, and `IV` if necessary, and press `Play`:
 
 `http://127.0.0.1:8000/live/play.html?id=stream`

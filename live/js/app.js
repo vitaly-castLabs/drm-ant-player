@@ -15,6 +15,7 @@ const encryptionSelect = document.getElementById("encryption_select");
 const environmentSelect = document.getElementById("environment_select");
 const merchantIdInput = document.getElementById("merchant_id_input");
 const keyIdInput = document.getElementById("key_id_input");
+const ivInput = document.getElementById("iv_input");
 const bufferInput = document.getElementById("buffer_input");
 const hwSecureInput = document.getElementById("hw_secure_input");
 const outputProtectionInput = document.getElementById("output_protection_input");
@@ -38,6 +39,7 @@ const defaultSettings = {
   environment: "production",
   merchantId: "",
   keyId: DEFAULT_KEY_ID_HEX,
+  iv: DEFAULT_IV_HEX,
   bufferSize: "500",
   hwSecure: false,
   outputProtection: false
@@ -111,6 +113,7 @@ function syncDrmFields() {
   environmentSelect.disabled = !drmEnabled;
   merchantIdInput.disabled = !drmEnabled;
   keyIdInput.disabled = !drmEnabled;
+  ivInput.disabled = !drmEnabled;
   bufferInput.disabled = !drmEnabled;
   hwSecureInput.disabled = !drmEnabled;
   outputProtectionInput.disabled = !drmEnabled;
@@ -137,6 +140,7 @@ function saveSettings() {
     environment: environmentSelect.value,
     merchantId: merchantIdInput.value,
     keyId: keyIdInput.value,
+    iv: ivInput.value,
     bufferSize: bufferInput.value,
     hwSecure: hwSecureInput.checked,
     outputProtection: outputProtectionInput.checked
@@ -150,6 +154,7 @@ function applySettings(settings) {
   environmentSelect.value = settings.environment;
   merchantIdInput.value = settings.merchantId;
   keyIdInput.value = settings.keyId;
+  ivInput.value = settings.iv;
   bufferInput.value = settings.bufferSize;
   hwSecureInput.checked = settings.hwSecure;
   outputProtectionInput.checked = settings.outputProtection;
@@ -203,7 +208,7 @@ function createDrmConfig() {
     codec: "H264",
     encryption: "cbcs",
     keyId: hexToBytes(keyIdInput.value || DEFAULT_KEY_ID_HEX, 16, "keyId"),
-    iv: hexToBytes(DEFAULT_IV_HEX, 16, "iv")
+    iv: hexToBytes(ivInput.value || DEFAULT_IV_HEX, 16, "iv")
   };
 
   if (hwSecureInput.checked) {
@@ -362,6 +367,7 @@ syncDrmFields();
   environmentSelect,
   merchantIdInput,
   keyIdInput,
+  ivInput,
   bufferInput,
   hwSecureInput,
   outputProtectionInput
